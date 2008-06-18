@@ -67,12 +67,12 @@
             <small class="note"><%=h group.notes %></small>
         </td>
         <td class="add-child">
-            <form method="post" action="<%= group_add_member_url :id => group %>">
+            <% form_tag group_add_member_url(:id => group) do %>
                 <select name="user_id", id="user_id">
                     <%= options_for_select User.find(:all, :order => 'name ASC').map{|u| [u.name, u.id]}.unshift(['—', '']) %>
                 </select>
                 <%= image_submit_tag('page_group_permissions/add-member.png', :alt => 'Add Group Member') %>
-            </form>
+            <% end %>
         </td>
         <td class="remove">
             <%= link_to image('remove', :alt => 'Remove Group'), group_remove_url(:id => group) %>
